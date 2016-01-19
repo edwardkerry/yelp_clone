@@ -1,14 +1,14 @@
 class ReviewsController < ApplicationController
 
   def new
-    @restuarant = Restaurant.find(params[:restaurant_id])
-    session[:restid] = params[:restaurant_id]
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
   end
 
   def create
-    @review = Review.create(review_params)
-    redirect_to ("/restaurants/#{session[:restid]}")
+    @restaurant = Restaurant.find(params[:restaurant_id])
+    @restaurant.reviews.create(review_params)
+    redirect_to restaurant_path(@restaurant)
   end
 
   private
