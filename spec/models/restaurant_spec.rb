@@ -3,7 +3,7 @@ require "spec_helper"
 describe Restaurant, type: :model  do
 
   it { is_expected.to have_many :reviews}
-
+  it {should belong_to(:user)}
 
   it "removes reviews when restaurant is deleted" do
     restaurant = Restaurant.create(name: "Hooters")

@@ -20,6 +20,9 @@
 - else
   %h1 No restaurants yet!
 
-= link_to "Add a restaurant", new_restaurant_path
+- if user_signed_in?
+  = link_to "Add a restaurant", new_restaurant_path
+- else
+  %p You must be signed in to add a restaurant!
 
 

@@ -1,6 +1,15 @@
 require "rails_helper"
 
 feature "restaurants" do
+
+  before do
+    visit  "/users/sign_up"
+    fill_in "Email", with: "test@test.com"
+    fill_in "Password", with: "12345678"
+    fill_in "Password confirmation", with: "12345678"
+    click_button "Sign up"
+  end
+
   context "No restaurants have been added" do
     scenario "should display a prompt to add a restaurant" do
       visit "/restaurants"
@@ -29,6 +38,13 @@ feature "restaurants" do
       expect(page).to have_content 'KFC'
       expect(current_path).to eq '/restaurants'
     end
+
+    scenario "User must be logged in before creating a restaurant" do
+       visit '/restaurants'
+       click_link "Sign out"
+       expect(page).not_to have_content "Add a restaurant"
+    end
+
   end
 
   context 'viewing restaurants' do
