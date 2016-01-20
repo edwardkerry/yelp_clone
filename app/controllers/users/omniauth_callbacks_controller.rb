@@ -12,6 +12,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def failure
-    redirect_ro root_path
+    redirect_to root_path
   end
 end
