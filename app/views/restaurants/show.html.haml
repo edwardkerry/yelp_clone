@@ -1,0 +1,18 @@
+%h1
+  = @restaurant.name
+  = @restaurant.description
+%h3
+  = link_to "Review #{@restaurant.name}", new_restaurant_review_path(@restaurant)
+
+- if @restaurant.reviews.any?
+  %ul
+    - @restaurant.reviews.each do |rev|
+      %li
+        Review Thoughts:
+        =rev.thoughts
+        Review Rating
+        %strong
+          = rev.rating
+          \/5
+- else
+  %p No reviews
