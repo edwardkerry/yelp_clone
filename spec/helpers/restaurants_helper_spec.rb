@@ -10,10 +10,12 @@ require 'rails_helper'
 #     end
 #   end
 # end
-
-
-
-
 # RSpec.describe RestaurantsHelper, type: :helper do
 #   pending "add some examples to (or delete) #{__FILE__}"
 # end
+
+def add_restaurant(name: 'KFC')
+  click_link 'Add a restaurant'
+  fill_in 'Name', with: name
+  click_button 'Create Restaurant'
+end

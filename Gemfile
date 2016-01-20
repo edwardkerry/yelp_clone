@@ -27,6 +27,8 @@ gem 'devise'
 
 gem 'omniauth-facebook', '~> 3.0'
 
+gem 'dotenv', '~> 2.1'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
