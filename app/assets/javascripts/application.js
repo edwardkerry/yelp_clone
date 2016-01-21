@@ -14,6 +14,9 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+//= require jquery
+//= require bootstrap-sprockets
+
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '767299866747044',
