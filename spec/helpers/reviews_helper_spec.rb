@@ -13,3 +13,10 @@ require 'rails_helper'
 # RSpec.describe ReviewsHelper, type: :helper do
 #   pending "add some examples to (or delete) #{__FILE__}"
 # end
+
+def leave_review(restaurant_name: 'KFC', thoughts: 'so so', rating: '3')
+  click_link "Review #{restaurant_name}"
+  fill_in "Thoughts", with: thoughts
+  select rating, from: 'Rating'
+  click_button 'Leave Review'
+end
