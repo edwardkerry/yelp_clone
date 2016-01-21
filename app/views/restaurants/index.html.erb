@@ -16,11 +16,14 @@
   <% restaurant.reviews.each do |review| %>
     <li>
       <%= review.thoughts %>, <strong><%= review.rating %></strong>/5
+      <% if @current_user && @current_user.has_reviewed?(restaurant) %>
+        <%= link_to "Delete review", restaurant_review_path(restaurant, review), method: :delete %>
+      <% end %>
     </li>
   <% end %>
 </ul>
 <% else %>
-  <p>No reviews.</p>
+  <p>No reviews yet</p>
 <% end %>
 <% end %>
 <% else %>
