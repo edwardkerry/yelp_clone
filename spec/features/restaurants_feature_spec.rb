@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'restaurants' do
+feature '>> Restaurants interaction <<' do
 
   context 'no restaurants have been added' do
     scenario 'should display a prompt to add a restaurant' do
@@ -33,7 +33,7 @@ feature 'restaurants' do
         visit '/restaurants'
         add_restaurant(name: 'KF')
         expect(page).not_to have_css 'h2', text: 'kf'
-        expect(page).to have_content 'error'
+        expect(page).to have_content 'Name is too short'
       end
     end
   end
@@ -48,8 +48,7 @@ feature 'restaurants' do
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
       click_button 'Update Restaurant'
-      expect(page).to have_content 'Kentucky Fried Chicken'
-      expect(current_path).to eq '/restaurants'
+      expect(page).to have_css 'h1',text: 'Kentucky Fried Chicken'
     end
 
     scenario 'prevents a user from editing a restaurant not added by them' do

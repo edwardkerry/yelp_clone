@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'reviewing' do
+feature '>> Reviewing <<' do
   before do
     sign_up
     add_restaurant(name: 'KFC')

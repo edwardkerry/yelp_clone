@@ -1,0 +1,16 @@
+%h1 Where do you wanna eat next?
+- if @restaurants.any?
+  - @restaurants.each do |restaurant|
+    %h4= link_to restaurant.name, restaurant_path(restaurant)
+    - if @current_user && restaurant.was_created_by?(@current_user)
+      = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant), class: "btn btn-link"
+      = link_to "Delete #{restaurant.name}", restaurant_path(restaurant), method: :delete, class: "btn btn-link"
+    - unless @current_user && @current_user.has_reviewed?(restaurant)
+      = link_to "Review #{restaurant.name}", new_restaurant_review_path(restaurant), class: "btn btn-link"
+    - restaurant.reviews.each do |review|
+      %p= review.thoughts
+      %strong= "Rating: #{review.rating}"
+      - if @current_user && @current_user.has_reviewed?(restaurant)
+        = link_to "Delete review", restaurant_review_path(restaurant, review), method: :delete, class: "btn btn-link"
+- else
+  %h4 No restaurants yet!

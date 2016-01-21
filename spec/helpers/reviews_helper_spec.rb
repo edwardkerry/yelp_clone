@@ -18,5 +18,5 @@ def leave_review(restaurant_name: 'KFC', thoughts: 'so so', rating: '3')
   click_link "Review #{restaurant_name}"
   fill_in "Thoughts", with: thoughts
   select rating, from: 'Rating'
-  click_button 'Leave Review'
+  click_button 'Leave review'
 end
