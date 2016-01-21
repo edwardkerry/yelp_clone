@@ -193,7 +193,7 @@ Devise.setup do |config|
   # change their passwords.
   config.reset_password_within = 6.hours
 
-  config.omniauth :facebook, "728361930633642", 
+  config.omniauth :facebook, "1658878981033230", 
     Rails.application.secrets.facebook_app_secret
 
   # When set to false, does not sign a user in automatically after their password is
