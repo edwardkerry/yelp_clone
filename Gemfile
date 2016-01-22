@@ -50,6 +50,8 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'rspec-collection_matchers'
   gem 'timecop', '~> 0.8.0'
+  gem 'poltergeist', '~> 1.8', '>= 1.8.1'
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.1'
 end
 
 

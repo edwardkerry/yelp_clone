@@ -17,8 +17,8 @@
         = link_to "Log in", new_user_session_path, class: "btn btn-default"
         = link_to "Sign up", new_user_registration_path, class: "btn btn-default"
       - if notice
-        .alert.alert-danger= notice
+        .alert.alert-success= notice
       - elsif alert
-        .alert.alert-success= alert
+        .alert.alert-danger= alert
     = yield
     %footer
