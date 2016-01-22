@@ -2,6 +2,7 @@
 - if @restaurants.any?
   - @restaurants.each do |restaurant|
     %h4= link_to restaurant.name, restaurant_path(restaurant)
+    = image_tag restaurant.image.url(:thumb)
     %strong= "Average rating: #{star_rating(restaurant.average_rating)}"
     - if @current_user && restaurant.was_created_by?(@current_user)
       = link_to "Edit #{restaurant.name}", edit_restaurant_path(restaurant), class: "btn btn-link"

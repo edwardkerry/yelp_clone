@@ -11,10 +11,11 @@ feature '>> Restaurants interaction <<' do
   end
 
   context 'resturants have been added' do
-    before { Restaurant.create(name: 'KFC') }
+    before { Restaurant.create(name: 'KFC', image: nil) }
     scenario 'display restaurants' do
       visit '/restaurants'
       expect(page).to have_content('KFC')
+      expect(page).to have_css("img", 'missing.png')
       expect(page).not_to have_content('No restaurants yet')
     end
   end
