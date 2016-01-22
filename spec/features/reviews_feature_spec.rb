@@ -41,4 +41,9 @@ feature '>> Reviewing <<' do
     expect(page).to have_content('Average rating: ★★★★☆')
   end
 
+  scenario 'displays how long ago the review was written' do
+    leave_review(restaurant_name: 'KFC', thoughts: 'so so', rating: '3')
+    expect(page).to have_content('less than a minute ago')
+  end
+
 end

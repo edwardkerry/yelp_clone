@@ -11,6 +11,7 @@
     - restaurant.reviews.each do |review|
       %p= review.thoughts
       %strong= "Rating: #{review.rating}"
+      %p= "#{time_ago_in_words(review.created_at)} ago"
       - if @current_user && @current_user.has_reviewed?(restaurant)
         = link_to "Delete review", restaurant_review_path(restaurant, review), method: :delete, class: "btn btn-link"
 - else

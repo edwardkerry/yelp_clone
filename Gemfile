@@ -49,6 +49,7 @@ group :development, :test do
   gem 'shoulda'
   gem 'shoulda-matchers'
   gem 'rspec-collection_matchers'
+  gem 'timecop', '~> 0.8.0'
 end
 
 
