@@ -33,4 +33,12 @@ feature '>> Reviewing <<' do
      expect(page).not_to have_link 'Delete review'
   end
 
+  scenario 'displays an average rating for all reviews' do
+    leave_review(restaurant_name: 'KFC', thoughts: 'so so', rating: '3')
+    click_link 'Sign out'
+    sign_up(email: 'test2@ttest.com', password: '12345678')
+    leave_review(restaurant_name: 'KFC', thoughts: 'grand', rating: '5')
+    expect(page).to have_content('Average rating: 4')
+  end
+
 end
