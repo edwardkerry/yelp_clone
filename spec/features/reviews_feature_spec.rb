@@ -38,7 +38,7 @@ feature '>> Reviewing <<' do
     click_link 'Sign out'
     sign_up(email: 'test2@ttest.com', password: '12345678')
     leave_review(restaurant_name: 'KFC', thoughts: 'grand', rating: '5')
-    expect(page).to have_content('Average rating: 4')
+    expect(page).to have_content('Average rating: ★★★★☆')
   end
 
 end
