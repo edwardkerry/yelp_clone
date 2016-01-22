@@ -11,8 +11,10 @@
     - restaurant.reviews.each do |review|
       %p= review.thoughts
       %strong= "Rating: #{review.rating}"
-      %p= "#{time_ago_in_words(review.created_at)} ago"
+      %p= "Reviewed #{time_ago_in_words(review.created_at)} ago"
+      %p= pluralize review.endorsements.count, "endorsement"
+      = link_to "Endorse review", review_endorsements_path(review), method: :post
       - if @current_user && @current_user.has_reviewed?(restaurant)
-        = link_to "Delete review", restaurant_review_path(restaurant, review), method: :delete, class: "btn btn-link"
+        = link_to "Delete review", review_path(review), method: :delete, class: "btn btn-link"
 - else
   %h4 No restaurants yet!
