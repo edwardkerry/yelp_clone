@@ -12,3 +12,4 @@
 !/log/.keep
 /tmp
 user_stories.md
+.env
