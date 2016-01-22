@@ -21,7 +21,7 @@ feature "restaurants" do
     before do
       Restaurant.create(name: "Hooters")
     end
-  
+
     scenario "display restaurants" do
       visit "/restaurants"
       expect(page).to have_content("Hooters")
@@ -42,7 +42,8 @@ feature "restaurants" do
     scenario "User must be logged in before creating a restaurant" do
        visit '/restaurants'
        click_link "Sign out"
-       expect(page).not_to have_content "Add a restaurant"
+       click_link 'Add a restaurant'
+       expect(current_path).to eq '/users/sign_in'
     end
 
   end
@@ -63,16 +64,50 @@ feature "restaurants" do
   context 'deleting restaurants' do
 
     before do
-      Restaurant.create name: 'Hooters'
       visit '/restaurants'
-
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      click_button 'Create Restaurant'
     end
 
-    scenario 'removes a restaurant when a user clicks a delete link' do
-      click_link 'Delete Hooters'
-      expect(page).not_to have_content 'Hooters'
+    scenario 'removes a restaurant when associated user clicks delete link' do
+      click_link 'Delete KFC'
+      expect(page).not_to have_content 'KFC'
       expect(page).to have_content 'Restaurant deleted successfully'
     end
+
+    scenario 'does not allow unassociated user to delete link' do
+      click_link 'Sign out'
+      user_2_sign_in
+      click_link 'Delete KFC'
+      expect(page).not_to have_content 'Restaurant deleted successfully'
+    end
+  end
+
+  context 'updating restaurants' do
+    before do
+      visit '/restaurants'
+      click_link 'Add a restaurant'
+      fill_in 'Name', with: 'KFC'
+      click_button 'Create Restaurant'
+    end
+
+    scenario 'a user may edit their restaurant' do
+      click_link 'Edit KFC'
+      fill_in "Name", with: "New one"
+      fill_in "Description", with: "1234"
+      click_button "Update Restaurant"
+      expect(current_path).to eq('/restaurants')
+      expect(page).to have_content("New one")
+    end
+
+    scenario 'a user may not edit another restaurant' do
+      click_link 'Sign out'
+      user_2_sign_in
+      click_link 'Edit KFC'
+      expect(page).to have_content("Unable to edit this restaurant")
+    end
+
   end
 
   context "an invalid restaurant" do
@@ -86,6 +121,13 @@ feature "restaurants" do
     end
   end
 
+  def user_2_sign_in
+    visit  "/users/sign_up"
+    fill_in "Email", with: "user2@test.com"
+    fill_in "Password", with: "12345678"
+    fill_in "Password confirmation", with: "12345678"
+    click_button "Sign up"
+  end
 
 
 end
